@@ -2,7 +2,7 @@ const express = require('express') ;
 const app = express() ;
 const cors = require('cors') ;
 const pool = require("./db.js");
-
+const dotenv = require('dotenv')
 
 // middlewares
 app.use(express.json({ limit: '10mb' }));
@@ -145,13 +145,8 @@ app.delete("/delete/todo/:todo_id", async (req,res) => {
 
 
 
-app.listen(5000, ()=>{
-    console.log(`server is running on port 5000`) ;
+app.listen(process.env.PORT, ()=>{
+    console.log(`server is running on port ${process.env.PORT}`)
 })
 
 
-// Parse the connection string
-const connectionString = "postgres://default:KFes1UxZT9aJ@ep-frosty-smoke-78032495.us-east-1.postgres.vercel-storage.com:5432/verceldb";
-const { username, password, host, port, database } = new URL(connectionString);
-
-console.log({ username, password, host, port, database }) ;
